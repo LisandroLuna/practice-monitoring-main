@@ -1,0 +1,15 @@
+apiVersion: v2
+name: monitoring-stack
+description: Un Helm chart para InfluxDB, Telegraf y Grafana
+version: 0.1.0
+
+dependencies:
+  - name: influxdb
+    version: "4.12.5"
+    repository: "https://helm.influxdata.com/"
+  - name: grafana
+    version: "8.5.1"
+    repository: "https://grafana.github.io/helm-charts"
+  - name: telegraf
+    version: "1.8.54"
+    repository: "https://helm.influxdata.com/"
