@@ -20,4 +20,6 @@ helm repo update
 
 helm upgrade --install prometheus -n monitoring prometheus-community/kube-prometheus-stack -f prometheus.yaml --version 62.7.0
 
+kubectl port-forward -n monitoring svc/prometheus-kube-prometheus-prometheus 9090:9090
+
 ```
