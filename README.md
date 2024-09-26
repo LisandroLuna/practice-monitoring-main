@@ -22,4 +22,14 @@ helm upgrade --install prometheus -n monitoring prometheus-community/kube-promet
 
 kubectl port-forward -n monitoring svc/prometheus-kube-prometheus-prometheus 9090:9090
 
+URL para datasource: http://prometheus-kube-prometheus-prometheus.monitoring
+
+DASHBOARD ID 1860
+
+----------------
+
+helm upgrade --install --values loki.yaml loki grafana/loki -n monitoring
+
+
+
 ```
