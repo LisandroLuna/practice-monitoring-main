@@ -9,6 +9,17 @@ influxdb:
       password: "zaq12wsx"
 
 grafana:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingressClassName: nginx
+      kubernetes.io/tls-acme: "true"
+    hosts:
+      - grafana.local
+    path: /
+
+  adminUser: admin
+
   persistence:
     enabled: true
     size: 10Gi
