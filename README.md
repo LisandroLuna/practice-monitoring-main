@@ -11,8 +11,10 @@ Helm es un gestor de paquetes para Kubernetes que simplifica la instalación, ac
 
 Los charts permiten a los usuarios empaquetar, versionar, compartir y desplegar aplicaciones de manera reproducible y eficiente, facilitando así la gestión de aplicaciones complejas en entornos Kubernetes.
 
-### Lens (Opcional)
+### Lens (Opcional, es una alternativa grafica a kubectl)
 Instalacion: https://k8slens.dev/
+
+Video explicativo: https://www.youtube.com/watch?v=DFMKcR4BqwM
 
 Pide registro pero es gratuita.
 
@@ -25,14 +27,15 @@ Lens es una IDE (Entorno de Desarrollo Integrado) diseñada específicamente par
 
 Lens es una herramienta poderosa para desarrolladores y operadores de Kubernetes, ofreciendo una visión clara y un control centralizado de los entornos de Kubernetes, lo que mejora significativamente la productividad y la eficacia en la gestión de aplicaciones.
 
+## Stack de monitoreo de Telegraf + InfluxDB + Grafana
 
-## Configuración Inicial
+### Configuración Inicial
 
 - `kubectl create ns monitoring`
   - **Descripción**: Este comando crea un nuevo namespace en Kubernetes llamado `monitoring`. 
   Los namespaces proporcionan una forma de dividir recursos de clúster entre múltiples usuarios.
 
-## Configuración de Repositorios Helm
+### Configuración de Repositorios Helm
 
 - `helm repo add influxdata https://helm.influxdata.com`
   - **Descripción**: Añade el repositorio de InfluxData a Helm, lo que permite instalar gráficos de InfluxData.
@@ -40,7 +43,11 @@ Lens es una herramienta poderosa para desarrolladores y operadores de Kubernetes
 - `helm repo add grafana https://grafana.github.io/helm-charts`
   - **Descripción**: Añade el repositorio de Grafana a Helm, facilitando la instalación de gráficos específicos de Grafana.
 
-## Gestión de Dependencias y Despliegue del Stack de Monitoreo
+### Arquitectura del stack de monitoreo de Telegraf + InfluxDB + Grafana
+- Aqui se incluyen dos nodos con Telegraf pero en nuestro caso utilizamos solo uno:
+![Diagrama](https://user-images.githubusercontent.com/7296281/190256548-370ceccd-b5a2-47e2-86ef-de0c3b3fe299.png)
+
+### Gestión de Dependencias y Despliegue del Stack de Monitoreo
 
 - `helm dependency build ./monitoring-stack`
   - **Descripción**: Actualiza y descarga las dependencias definidas en el archivo `Chart.yaml` del directorio `monitoring-stack`, preparando el gráfico para la instalación.
@@ -51,7 +58,7 @@ Lens es una herramienta poderosa para desarrolladores y operadores de Kubernetes
 - `helm upgrade --install monitoring-stack ./monitoring-stack --namespace monitoring`
   - **Descripción**: Actualiza o instala el stack de monitoreo. Si el stack ya existe, se actualiza; si no, se instala.
 
-## Acceso a Grafana (En caso de no utilizar ingress)
+### Acceso a Grafana (En caso de no utilizar ingress)
 
 - `kubectl port-forward -n monitoring svc/monitoring-stack-grafana 3000:80`
   - **Descripción**: Redirige el puerto 80 del servicio de Grafana dentro del namespace `monitoring` al puerto 3000 de tu máquina local, permitiendo el acceso a la interfaz de Grafana a través de `localhost:3000`.
@@ -59,7 +66,9 @@ Lens es una herramienta poderosa para desarrolladores y operadores de Kubernetes
 - **DASHBOARD ID 928**
   - **Descripción**: Identificador del dashboard de Grafana que se importará para visualizar datos específicos desde el sitio de Grafana.
 
-## Configuración de Prometheus
+## Despliegue de Stack Prometheus
+
+### Configuración de Prometheus
 
 - `helm repo add prometheus-community https://prometheus-community.github.io/helm-charts`
   - **Descripción**: Añade el repositorio de Helm de la comunidad de Prometheus, permitiendo la instalación de gráficos relacionados con Prometheus.
@@ -79,7 +88,9 @@ Lens es una herramienta poderosa para desarrolladores y operadores de Kubernetes
 - **DASHBOARD ID 1860**
   - **Descripción**: Identificador de dashboard para Grafana, relacionado con el monitoreo de Kubernetes usando Prometheus.
 
-## Configuración de Loki
+## Despliegue de Loki
+
+### Configuración de Loki
 
 - `helm upgrade --install --values loki.yaml loki grafana/loki -n monitoring`
   - **Descripción**: Instala o actualiza Loki, un sistema de registro para Kubernetes, usando valores personalizados de `loki.yaml` en el namespace `monitoring`.
