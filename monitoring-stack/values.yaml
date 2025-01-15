@@ -19,11 +19,18 @@ grafana:
     path: /
 
   adminUser: admin
+  adminPassword: "zaq12wsx"
+
+  # # Use an existing secret for the admin user.
+  # admin:
+  #   ## Name of the secret. Can be templated.
+  #   existingSecret: ""
+  #   userKey: admin-user
+  #   passwordKey: admin-password
 
   persistence:
     enabled: true
     size: 10Gi
-  adminPassword: "zaq12wsx"
   datasources:
     datasources.yaml:
       apiVersion: 1
