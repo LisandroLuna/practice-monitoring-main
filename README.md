@@ -92,5 +92,5 @@ Lens es una herramienta poderosa para desarrolladores y operadores de Kubernetes
 
 ### Configuración de Loki
 
-- `helm upgrade --install --values loki.yaml loki grafana/loki -n monitoring`
+- `helm upgrade --install loki-stack -n monitoring grafana/loki-stack --values loki.yaml`
   - **Descripción**: Instala o actualiza Loki, un sistema de registro para Kubernetes, usando valores personalizados de `loki.yaml` en el namespace `monitoring`.
