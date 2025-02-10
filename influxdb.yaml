@@ -1,0 +1,8 @@
+persistence:
+  enabled: true
+  size: 10Gi
+setDefaultUser:
+  enabled: true
+  user:
+    username: "admin"
+    password: "zaq12wsx"

@@ -66,6 +66,21 @@ Lens es una herramienta poderosa para desarrolladores y operadores de Kubernetes
 - **DASHBOARD ID 928**
   - **Descripción**: Identificador del dashboard de Grafana que se importará para visualizar datos específicos desde el sitio de Grafana.
 
+## Instalacion de componentes individualmente
+
+```
+helm repo add influxdata https://helm.influxdata.com
+
+helm upgrade -i telegraf influxdata/telegraf -n monitoring --version 1.8.54
+
+helm upgrade -i influxdb influxdata/influxdb -n monitoring --version 4.12.5
+
+helm repo add grafana https://grafana.github.io/helm-charts
+helm upgrade -i grafana grafana/grafana -n monitoring --version 8.5.1
+
+```
+
+
 ## Despliegue de Stack Prometheus
 
 ### Configuración de Prometheus

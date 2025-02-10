@@ -4,4 +4,12 @@ loki:
 promtail:
   enabled: true
 grafana:
-  enabled: false
+  enabled: true
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingressClassName: nginx
+      kubernetes.io/tls-acme: "true"
+    hosts:
+      - grafana.local
+    path: /
