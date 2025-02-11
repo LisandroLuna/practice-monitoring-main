@@ -14,8 +14,8 @@ admin:
   userKey: admin-user
   passwordKey: admin-password
 
-adminUser: admin
-adminPassword: "zaq12wsx"
+# adminUser: admin
+# adminPassword: "zaq12wsx"
 
 # # Use an existing secret for the admin user.
 # admin:
@@ -27,6 +27,7 @@ adminPassword: "zaq12wsx"
 persistence:
   enabled: true
   size: 10Gi
+  
 datasources:
   datasources.yaml:
     apiVersion: 1
