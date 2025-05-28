@@ -22,7 +22,7 @@ config:
   outputs:
     - influxdb:
         urls: 
-          - "http://monitoring-stack-influxdb.monitoring:8086"
+          - "http://influxdb.monitoring:8086"
         database: "influxdb"
         username: "admin"
         password: "zaq12wsx"

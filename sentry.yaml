@@ -1,0 +1,30 @@
+# Enable built-in PostgreSQL
+postgresql:
+  enabled: true
+
+# Enable built-in Redis
+redis:
+  enabled: true
+
+# Enable built-in Kafka
+kafka:
+  enabled: true
+  config: {}  # empty map is acceptable if no custom config
+
+# Disable symbolic binary upload support (optional)
+symbolic:
+  enabled: false
+
+# Email backend (set to 'console' for local/dev)
+email:
+  backend: console
+
+# Ingress (for browser access)
+ingress:
+  enabled: true
+  className: "nginx"  # or leave empty if using default ingress class
+  hosts:
+    - host: sentry.local
+      paths:
+        - path: /
+          pathType: Prefix
