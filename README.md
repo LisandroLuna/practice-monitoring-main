@@ -80,7 +80,7 @@ helm upgrade -i telegraf influxdata/telegraf -n monitoring --version 1.8.54 -f t
 helm upgrade -i influxdb influxdata/influxdb -n monitoring --version 4.12.5 -f influxdb.yaml 
 
 helm repo add grafana https://grafana.github.io/helm-charts
-helm upgrade -i grafana grafana/grafana -n monitoring --version 8.5.1 -f grafana.yaml 
+helm upgrade --create-namespace -i grafana grafana/grafana -n monitoring --version 9.2.2 -f grafana.yaml 
 
 ```
 
@@ -111,5 +111,8 @@ helm upgrade -i grafana grafana/grafana -n monitoring --version 8.5.1 -f grafana
 
 ### Configuración de Loki
 
-- `helm upgrade --install loki-stack -n monitoring grafana/loki-stack --values loki.yaml`
+- ```
+helm upgrade --install --create-namespace loki -n loki grafana/loki --version 6.30.1 --values loki.yaml
+helm upgrade --install --create-namespace promtail -n loki grafana/promtail --version 6.17.0 --values promtail.yaml
+```
   - **Descripción**: Instala o actualiza Loki, un sistema de registro para Kubernetes, usando valores personalizados de `loki.yaml` en el namespace `monitoring`.
