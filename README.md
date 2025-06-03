@@ -95,7 +95,7 @@ helm upgrade --create-namespace -i grafana grafana/grafana -n monitoring --versi
 - `helm repo update`
   - **Descripción**: Actualiza la lista de gráficos disponibles desde los repositorios de Helm configurados.
 
-- `helm upgrade --install prometheus -n monitoring prometheus-community/kube-prometheus-stack -f prometheus.yaml --version 62.7.0`
+- `helm upgrade --install prometheus -n monitoring prometheus-community/kube-prometheus-stack -f prometheus.yaml --version 73.0.0`
   - **Descripción**: Instala o actualiza Prometheus usando el gráfico `kube-prometheus-stack` con una configuración personalizada en `prometheus.yaml` y especificando una versión específica del gráfico.
 
 - `kubectl port-forward -n monitoring svc/prometheus-kube-prometheus-prometheus 9090:9090` (Si no utilizamos ingress)
