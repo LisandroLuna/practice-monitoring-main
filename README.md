@@ -111,7 +111,7 @@ helm upgrade --create-namespace -i grafana grafana/grafana -n monitoring --versi
 
 ### Configuración de Loki
 
-- ```
+```
 helm upgrade --install --create-namespace loki -n loki grafana/loki --version 6.30.1 --values loki.yaml
 helm upgrade --install --create-namespace promtail -n loki grafana/promtail --version 6.17.0 --values promtail.yaml
 ```
